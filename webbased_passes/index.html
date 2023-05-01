@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Room 53 Pass Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Room 53 Pass Generator</h1>
+        <form id="passGeneratorForm">
+            <!-- Rest of the form code -->
+        </form>
+    </div>
+
+    <!-- Include Bootstrap and jQuery libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript for pass generation and printing -->
+    <script>
+        // Callback function to populate options
+        function populateOptions(data) {
+            // Populate options code
+        }
+
+        // Load options from local JSON file
+        $.getJSON("options.json", function (data) {
+            populateOptions(data);
+        });
+
+        // Preview button click event handler
+        $("#previewButton").click(function () {
+            // Preview pass code
+        });
+
+        // Print Pass button click event handler
+        $("#printPassButton").click(function () {
+            var pass = $("#previewText").val();
+            // Make HTTP POST request to Python script with pass data
+            $.post("print_pass.py", {
+                pass: pass
+            }, function (response) {
+                // Reset form and preview text
+                $("#passGeneratorForm")[0].reset();
+                $("#previewText").val("");
+                // Display success message
+                alert(response);
+            });
+        });
+    </script>
+</body>
+
+</html>
