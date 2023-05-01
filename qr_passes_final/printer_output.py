@@ -25,7 +25,7 @@ def print_pass():
     printer.print(output)
     printer.feed(2)
     printer.print("This pass authorized by Mr. King")
-    printer.feed(5)
+    printer.feed(8)
     GPIO.output(buzzer,GPIO.HIGH)
     print("beep")
     sleep(0.5)
