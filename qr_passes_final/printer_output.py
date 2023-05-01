@@ -32,5 +32,4 @@ def print_pass():
     GPIO.output(buzzer,GPIO.LOW)
     print("no beep")
     
-print_pass()
         
