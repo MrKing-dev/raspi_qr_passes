@@ -15,7 +15,7 @@ uart = serial.Serial("/dev/serial0", baudrate=19200, timeout=3000)
 ThermalPrinter = adafruit_thermal_printer.get_printer_class(1.00)
 
 printer = ThermalPrinter(uart)
-output = ""
+output = "Only a test"
 
 
 def print_pass():
@@ -31,4 +31,6 @@ def print_pass():
     sleep(0.5)
     GPIO.output(buzzer,GPIO.LOW)
     print("no beep")
+    
+print_pass()
         
