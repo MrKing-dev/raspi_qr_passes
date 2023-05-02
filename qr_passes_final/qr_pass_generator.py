@@ -20,7 +20,7 @@ current_frame = 0
 
 
 name = "Your Name Here"
-destination = []
+destination = "Choose a destination"
 origin = "Mr. King Room 53"
 now = None
 timestamp = "Timestamp Printed Here"
@@ -56,7 +56,7 @@ def reset():
     class_displayed = "Period 1"
     name = "Your Name Here"
     output = "Preview Here"
-    destination = []
+    destination = "Choose a destination"
 
 def get_current_timestamp():
     global now
@@ -70,7 +70,7 @@ def print_pass():
 
     timestamp = get_current_timestamp()
     pass_info = f'''Name: {name}
-Destination: {', '.join(destination)}
+Destination: {destination}
 Origin: {origin}
 Timestamp: {timestamp}'''
     printer_output.output = pass_info
@@ -164,9 +164,9 @@ def update_destination(dest):
     global destination
     global output
     
-    destination.append(dest)
+    destination = dest
     output = f'''Name: {name}
-Destination: {', '.join(destination)}
+Destination: {destination}
 Origin: {origin}'''
     update_output_label()
     print(dest)
