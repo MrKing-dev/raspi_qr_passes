@@ -20,7 +20,7 @@ current_frame = 0
 
 
 name = "Your Name Here"
-destination = "Please Select a Destination"
+destination = []
 origin = "Mr. King Room 53"
 now = None
 timestamp = "Timestamp Printed Here"
@@ -56,6 +56,7 @@ def reset():
     class_displayed = "Period 1"
     name = "Your Name Here"
     output = "Preview Here"
+    destination = []
 
 def get_current_timestamp():
     global now
@@ -178,7 +179,7 @@ def update_destination(dest, btn):
     else:
         btn.configure(bootstyle="light-outline")
     
-    destination = dest
+    destination.append(dest)
     output = f'''Name: {name}
 Destination: {destination}
 Origin: {origin}'''
