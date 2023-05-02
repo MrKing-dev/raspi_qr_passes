@@ -70,7 +70,7 @@ def print_pass():
 
     timestamp = get_current_timestamp()
     pass_info = f'''Name: {name}
-Destination: {destination}
+Destination: {', '.join(destination)}
 Origin: {origin}
 Timestamp: {timestamp}'''
     printer_output.output = pass_info
