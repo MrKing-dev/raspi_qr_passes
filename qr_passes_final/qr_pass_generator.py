@@ -139,9 +139,14 @@ output_frame.pack(pady=10)
 
 ###FUNCTION DEFINITIONS FOR BUTTONS###
 
-def update_class(x):
+def update_class(x, btn):
     global class_name
     global class_displayed
+    
+    if btn.bootstyle == "success-outline":
+        btn.configure(bootstyle="success")
+    else:
+        btn.configure(bootstyle="success-outline")
     
     class_displayed = x
     class_name = switch_class(x)
@@ -150,8 +155,13 @@ def update_class(x):
     print(class_displayed)
     print(class_name)
 
-def update_student(x):
+def update_student(x, btn):
     global name
+    
+    if btn.bootstyle == "primary-outline":
+        btn.configure(bootstyle="primary")
+    else:
+        btn.configure(bootstyle="primary-outline")
     
     new_name = number_to_student(x, signout_path)
     name = new_name
@@ -159,9 +169,14 @@ def update_student(x):
     print(new_name)
     print(name)
 
-def update_destination(dest):
+def update_destination(dest, btn):
     global destination
     global output
+    
+    if btn.bootstyle == "light-outline":
+        btn.configure(bootstyle="light")
+    else:
+        btn.configure(bootstyle="light-outline")
     
     destination = dest
     output = f'''Name: {name}
@@ -177,7 +192,7 @@ for i in range(2):
         index = i*4 + j
         
         class_name = classes[index]
-        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success", command=lambda x=class_name: update_class(x))
+        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success-outline", command=lambda x=class_name: update_class(x))
         b.grid(row=i, column=j, padx=10, pady=10)
             
 #create 4x5 grid of buttons with student numbers
@@ -200,7 +215,7 @@ for i in range(2):
         index = i*5 + j
         if index < len(destinations):
             destination = destinations[index]
-            b = ttkbs.Button(dest_frame, text=destination, width=15, bootstyle="light", command=lambda x=destination: update_destination(x))
+            b = ttkbs.Button(dest_frame, text=destination, width=15, bootstyle="light-outline", command=lambda x=destination: update_destination(x))
             b.grid(row=i, column=j, padx=10, pady=10)
         
 output_label = ttkbs.Label(output_frame, text=output, bootstyle="info")
