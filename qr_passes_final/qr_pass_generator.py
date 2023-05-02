@@ -183,7 +183,6 @@ Destination: {destination_str}
 Origin: {origin}
 Timestamp: {timestamp}'''
     update_output_label()
-    print(dest)
     print(output)
 
 #create a grid of buttons for the class periods
