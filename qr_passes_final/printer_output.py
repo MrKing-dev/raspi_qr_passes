@@ -20,7 +20,14 @@ output = ""
 
 def print_pass():
     global output
-    printer.print("Hall Pass")
+    printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
+    printer.size = adafruit_thermal_printer.SIZE_MEDIUM
+    printer.justify = adafruit_thermal_printer.JUSTIFY_CENTER
+    printer.print('HALL PASS')
+    # Reset back to normal printing:
+    printer.underline = None
+    printer.size = adafruit_thermal_printer.SIZE_SMALL
+    printer.justify = adafruit_thermal_printer.JUSTIFY_LEFT
     printer.feed(2)
     printer.print(output)
     printer.feed(2)
