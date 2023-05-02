@@ -173,6 +173,7 @@ def update_student(x):
 def update_preview():
     global output
     
+    selected_destinations = []
     for checkbutton in dest_checkbuttons:
         if checkbutton.instate(['selected']):
             selected_destinations.append(checkbutton.cget('text'))
