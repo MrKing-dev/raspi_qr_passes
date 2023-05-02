@@ -20,7 +20,8 @@ current_frame = 0
 
 
 name = "Your Name Here"
-destination = "Choose a destination"
+#destination = "Choose a destination"
+destinations = []
 origin = "Mr. King Room 53"
 now = None
 timestamp = "Timestamp Printed Here"
@@ -48,6 +49,7 @@ def reset():
     global name
     global output
     global class_displayed
+    global destinations
     
     output="Preview Here"
     update_output_label()
@@ -56,7 +58,8 @@ def reset():
     class_displayed = "Period 1"
     name = "Your Name Here"
     output = "Preview Here"
-    destination = "Choose a destination"
+    #destination = "Choose a destination"
+    destinations = []
 
 def get_current_timestamp():
     global now
@@ -69,8 +72,13 @@ def print_pass():
     global output
 
     timestamp = get_current_timestamp()
+    selected_destinations = []
+    for checkbutton in dest_checkbuttons:
+        if checkbutton.instate(['selected']):
+            selected_destinations.append(checkbutton.cget('text'))
+    destination_str = ', '.join(selected_destinations)
     pass_info = f'''Name: {name}
-Destination: {destination}
+Destination: {destination_str}
 Origin: {origin}
 Timestamp: {timestamp}'''
     printer_output.output = pass_info
@@ -196,14 +204,16 @@ def destroy_widgets_in_frame(frame):
         widget.destroy()
    
 
-# create a 3x3 grid of buttons for the destinations
+# create a grid of buttons for the destinations
+dest_checkbuttons = []
 for i in range(2):
     for j in range(5):
         index = i*5 + j
         if index < len(destinations):
             destination = destinations[index]
-            b = ttkbs.Button(dest_frame, text=destination, width=15, bootstyle="light-outline", command=lambda x=destination: update_destination(x))
+            b = ttkbs.Checkbutton(dest_frame, text=destination, width=15, bootstyle="light-outline-toolbutton")
             b.grid(row=i, column=j, padx=10, pady=10)
+            dest_checkbuttons.append(b)
         
 output_label = ttkbs.Label(output_frame, text=output, bootstyle="info")
 output_label.pack(pady=20)
