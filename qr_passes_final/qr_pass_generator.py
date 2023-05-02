@@ -166,7 +166,7 @@ def update_destination(dest):
     
     destination.append(dest)
     output = f'''Name: {name}
-Destination: {destination}
+Destination: {', '.join(destination)}
 Origin: {origin}'''
     update_output_label()
     print(dest)
