@@ -193,7 +193,8 @@ for i in range(2):
         index = i*4 + j
         
         class_name = classes[index]
-        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success-outline", command=lambda x=class_name, btn=b: update_class(x, btn))
+        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success-outline")
+        b.configure(command=lambda x=class_name, btn=b: update_class(x, btn))
         b.grid(row=i, column=j, padx=10, pady=10)
             
 #create 4x5 grid of buttons with student numbers
