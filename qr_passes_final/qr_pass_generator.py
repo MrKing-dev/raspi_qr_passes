@@ -217,7 +217,7 @@ for i in range(2):
         
 output_label = ttkbs.Label(output_frame, text=output, bootstyle="info")
 output_label.pack(pady=20)
-preview_btn = ttkbs.Button(output_frame, text-"Preview", width=12, bootstyle='primary', command=lambda: update_preview())
+preview_btn = ttkbs.Button(output_frame, text="Preview", width=12, bootstyle='primary', command=lambda: update_preview())
 print_pass_btn = ttkbs.Button(output_frame, text="Print Pass", width=12, bootstyle ="warning", command=lambda: print_pass())
 print_pass_btn.pack(padx=10, pady=10)
 reset_btn = ttkbs.Button(output_frame, text="Reset", width=12, bootstyle ="danger", command=lambda: reset())
