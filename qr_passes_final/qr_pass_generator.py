@@ -140,14 +140,9 @@ output_frame.pack(pady=10)
 
 ###FUNCTION DEFINITIONS FOR BUTTONS###
 
-def update_class(x, btn):
+def update_class(x):
     global class_name
     global class_displayed
-    
-    if btn.style.bootstyle == "success-outline":
-        btn.configure(bootstyle="success")
-    else:
-        btn.configure(bootstyle="success-outline")
     
     class_displayed = x
     class_name = switch_class(x)
@@ -156,13 +151,8 @@ def update_class(x, btn):
     print(class_displayed)
     print(class_name)
 
-def update_student(x, btn):
+def update_student(x):
     global name
-    
-    if btn.bootstyle == "primary-outline":
-        btn.configure(bootstyle="primary")
-    else:
-        btn.configure(bootstyle="primary-outline")
     
     new_name = number_to_student(x, signout_path)
     name = new_name
@@ -170,14 +160,9 @@ def update_student(x, btn):
     print(new_name)
     print(name)
 
-def update_destination(dest, btn):
+def update_destination(dest):
     global destination
     global output
-    
-    if btn.bootstyle == "light-outline":
-        btn.configure(bootstyle="light")
-    else:
-        btn.configure(bootstyle="light-outline")
     
     destination.append(dest)
     output = f'''Name: {name}
