@@ -144,7 +144,7 @@ def update_class(x, btn):
     global class_name
     global class_displayed
     
-    if btn.bootstyle == "success-outline":
+    if btn.style.bootstyle == "success-outline":
         btn.configure(bootstyle="success")
     else:
         btn.configure(bootstyle="success-outline")
