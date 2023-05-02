@@ -20,8 +20,6 @@ current_frame = 0
 
 
 name = "Your Name Here"
-#destination = "Choose a destination"
-destinations = []
 origin = "Mr. King Room 53"
 now = None
 timestamp = "Timestamp Printed Here"
@@ -49,7 +47,6 @@ def reset():
     global name
     global output
     global class_displayed
-    global destinations
     
     output="Preview Here"
     update_output_label()
@@ -60,8 +57,6 @@ def reset():
     class_displayed = "Period 1"
     name = "Your Name Here"
     output = "Preview Here"
-    #destination = "Choose a destination"
-    destinations = []
 
 def get_current_timestamp():
     global now
@@ -85,7 +80,7 @@ Origin: {origin}
 Timestamp: {timestamp}'''
     printer_output.output = pass_info
     printer_output.print_pass()
-    output = [timestamp, name, destination, origin, "OUT"]
+    output = [timestamp, name, destination_str, origin, "OUT"]
     with open(signout_path, 'a', newline='') as csv_file:
         my_writer = csv.writer(csv_file, delimiter=',')
         my_writer.writerow(output)
@@ -134,7 +129,7 @@ def number_to_student(student_number, signout_path):
 
 ###USER INTERFACE CODE BELOW###
                     
-destinations = ["Guidance", "Library", "Office", "Auditorium", "Nurse", "Locker", "Restroom", "Classroom:___", "Other:_____"]
+destinations = ["Guidance", "Library", "Office", "Auditorium", "Nurse", "Locker", "Restroom", "Water", "Classroom:___", "Other:_____"]
 classes = ["Period 1", "Period 2", "Period 3", "Period 4", "Period 5", "Period 6", "PRO CERT", "Homeroom"]
 
 root = ttkbs.Window(title="Mr. King's Signout Page", themename="superhero", scaling=3.0)
