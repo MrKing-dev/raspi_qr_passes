@@ -55,7 +55,7 @@ def reset():
     update_output_label()
     destroy_widgets_in_frame(id_frame)
     for checkbutton in dest_checkbuttons:
-        checkbutton.state(['unselected'])
+        checkbutton.state(['!selected'])
         
     class_displayed = "Period 1"
     name = "Your Name Here"
