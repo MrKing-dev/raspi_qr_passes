@@ -170,12 +170,17 @@ def update_student(x):
     print(new_name)
     print(name)
 
-def update_preview(dest):
+def update_preview():
     global output
     
+    for checkbutton in dest_checkbuttons:
+        if checkbutton.instate(['selected']):
+            selected_destinations.append(checkbutton.cget('text'))
+    destination_str = ', '.join(selected_destinations)
     output = f'''Name: {name}
-Destination: {destination}
-Origin: {origin}'''
+Destination: {destination_str}
+Origin: {origin}
+Timestamp: {timestamp}'''
     update_output_label()
     print(dest)
     print(output)
