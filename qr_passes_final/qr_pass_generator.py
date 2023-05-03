@@ -48,6 +48,9 @@ def reset():
     global output
     global class_displayed
     
+    for button in period_buttons:
+        button.configure(bootstyle="success-outline")
+    
     output="Preview Here"
     update_output_label()
     destroy_widgets_in_frame(id_frame)
@@ -118,7 +121,11 @@ def number_to_student(student_number, signout_path):
                             with open(signout_path, 'w', newline='') as signout_file:
                                 signout_writer = csv.writer(signout_file, delimiter=',')
                                 signout_writer.writerows(signout_data)
-                                toast = ToastNotification(title="Signing Back In", message=f"{name} signed back in at {get_current_timestamp()}", duration=3000)
+                                toast = ToastNotification(
+                                    title="Signing Back In",
+                                    icon='♛', 
+                                    message=f"{name} signed back in at {get_current_timestamp()}",
+                                    duration=3000)
                                 toast.show_toast()
 
                                 reset()
@@ -132,7 +139,7 @@ def number_to_student(student_number, signout_path):
 destinations = ["Guidance", "Library", "Office", "Auditorium", "Nurse", "Locker", "Restroom", "Water", "Classroom:___", "Other:_____"]
 classes = ["Period 1", "Period 2", "Period 3", "Period 4", "Period 5", "Period 6", "PRO CERT", "Homeroom"]
 
-root = ttkbs.Window(title="Mr. King's Signout Page", themename="superhero", scaling=3.0)
+root = ttkbs.Window(title="Mr. King's Signout Page", themename="darkly", scaling=3.0)
 
 period_frame = ttkbs.Frame(root)
 id_frame = ttkbs.Frame(root)
@@ -145,9 +152,11 @@ output_frame.pack(pady=10)
 
 ###FUNCTION DEFINITIONS FOR BUTTONS###
 
-def update_class(x):
+def update_class(x, b):
     global class_name
     global class_displayed
+    
+    b.configure(bootstyle="success")
     
     class_displayed = x
     class_name = switch_class(x)
@@ -156,8 +165,10 @@ def update_class(x):
     print(class_displayed)
     print(class_name)
 
-def update_student(x):
+def update_student(x, b):
     global name
+    
+    b.configure(bootstyle='primary')
     
     new_name = number_to_student(x, signout_path)
     name = new_name
@@ -175,31 +186,36 @@ def update_preview():
     destination_str = ', '.join(selected_destinations)
     output = f'''Name: {name}
 Destination: {destination_str}
-Origin: {origin}
-Timestamp: {timestamp}'''
+Origin: {origin}'''
     update_output_label()
     print(output)
 
 #create a grid of buttons for the class periods
+period_buttons = []
 for i in range(2):
     for j in range(4):
         index = i*4 + j
         
         class_name = classes[index]
         b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success-outline")
-        b.configure(command=lambda x=class_name, btn=b: update_class(x))
+        b.configure(command=lambda x=class_name, btn=b: update_class(x, btn))
         b.grid(row=i, column=j, padx=10, pady=10)
+        period_buttons.append(b)
             
 #create 4x5 grid of buttons with student numbers
+id_buttons = []
 def create_id_grid():
     for i in range(3):
         for j in range(7):
             index = i*7 + j
             if index < len(getattr(cl, class_name)):
-                b = ttkbs.Button(id_frame, text=getattr(cl, class_name)[index], width=10, bootstyle="primary-outline", command=lambda x=getattr(cl, class_name)[index]: update_student(x))
+                b = ttkbs.Button(id_frame, text=getattr(cl, class_name)[index], width=10, bootstyle="primary-outline")
+                b.configure(command=lambda x=getattr(cl, class_name)[index], btn=b: update_student(x, btn))
+                id_buttons.append(b)
                 b.grid(row=i, column=j, padx=10, pady=10)
 
 def destroy_widgets_in_frame(frame):
+    id_buttons = []
     for widget in frame.winfo_children():
         widget.destroy()
    
@@ -211,7 +227,7 @@ for i in range(2):
         index = i*5 + j
         if index < len(destinations):
             destination = destinations[index]
-            b = ttkbs.Checkbutton(dest_frame, text=destination, width=15, bootstyle="light-outline-toolbutton")
+            b = ttkbs.Checkbutton(dest_frame, text=destination, width=15, bootstyle="success-outline-toolbutton")
             b.grid(row=i, column=j, padx=10, pady=10)
             dest_checkbuttons.append(b)
         
