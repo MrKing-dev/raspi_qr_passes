@@ -139,7 +139,7 @@ def number_to_student(student_number, signout_path):
 destinations = ["Guidance", "Library", "Office", "Auditorium", "Nurse", "Locker", "Restroom", "Water", "Classroom:___", "Other:_____"]
 classes = ["Period 1", "Period 2", "Period 3", "Period 4", "Period 5", "Period 6", "PRO CERT", "Homeroom"]
 
-root = ttkbs.Window(title="Mr. King's Signout Page", themename="darkly", scaling=3.0)
+root = ttkbs.Window(title="Mr. King's Signout Page", themename="superhero", scaling=3.0) #theme options: darkly, flatly, morph, superhero, lumen
 
 period_frame = ttkbs.Frame(root)
 id_frame = ttkbs.Frame(root)
@@ -197,7 +197,7 @@ for i in range(2):
         index = i*4 + j
         
         class_name = classes[index]
-        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="success-outline")
+        b = ttkbs.Button(period_frame, text=class_name, width=15, bootstyle="info-outline")
         b.configure(command=lambda x=class_name, btn=b: update_class(x, btn))
         b.grid(row=i, column=j, padx=10, pady=10)
         period_buttons.append(b)
@@ -227,7 +227,7 @@ for i in range(2):
         index = i*5 + j
         if index < len(destinations):
             destination = destinations[index]
-            b = ttkbs.Checkbutton(dest_frame, text=destination, width=15, bootstyle="success-outline-toolbutton")
+            b = ttkbs.Checkbutton(dest_frame, text=destination, width=15, bootstyle="info-outline-toolbutton")
             b.grid(row=i, column=j, padx=10, pady=10)
             dest_checkbuttons.append(b)
         
